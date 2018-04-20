@@ -6,9 +6,12 @@
 #
 #
 #
-# Written by Miguel P Xochicale [http://mxochicale.github.io]
-# email:@gmail.com
-# please email me directly if you see any errors or have any questions
+# * If you have a question or comment that might be relevant 
+#	to other people, please open an issue.
+# * If you have any specific questions about the information 
+#	of this repository, you can me by vising: https://mxochicale.github.io/
+#
+#
 #
 ###############################################################################	
 	# OUTLINE:
@@ -26,26 +29,16 @@ start.time <- Sys.time()
 # (0) Loading Functions and Libraries
 
 
-
-#requireNamespace('deSolve', quietly=TRUE)
-#library.dynam.unload("deSolve", libpath=paste(.libPaths()[1], "//deSolve", sep=""))
-#library.dynam("deSolve", package="deSolve", lib.loc=.libPaths()[1])
-
-
+library(deSolve) # call deSolve first to avoid (Error in .C("unlock_solver") : )
 library(devtools)
 load_all('~/mxochicale/github/nonlinearTseries')
-
-# # source('~/mxochicale/github/r-code_repository/functions/ollin_cencah.R')
-
-
-library(deSolve) # call deSolve first to avoid ()
 
 library(data.table) # for manipulating data
 library(plot3D)
 library("RColorBrewer")
+library(ggplot2)
+library(reshape2)#for melt
 
-# require(scales)#for muted function
-# library(latex2exp)
 
 
 ################################################################################
@@ -148,8 +141,6 @@ rqa.analysis=rqa(time.series = lorenz.ts, embedding.dim=2, time.lag=1,
 ## (5) Plotting Recurrence Plot
 ##
 
-library(ggplot2)
-library(reshape2)#for melt
 rm <- as.matrix(rqa.analysis$recurrence.matrix)
 RM <- as.data.table( melt(rm, varnames=c('a','b'),value.name='Recurrence') )
 r <- ggplot(RM)+
