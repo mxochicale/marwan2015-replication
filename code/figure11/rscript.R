@@ -17,12 +17,31 @@
 	# OUTLINE:
 	# (0) Loading libraries and functions
  	# (1) Definifing paths
-	
+	# (2) Lorez Time Series
+	# (3) Plotting State Spaces
+	# (4) Computing Recurrence Quantification Parameters
+	# (5) Plotting Recurrence Plot
+
+
 
 
 #################
 # Start the clock!
 start.time <- Sys.time()
+
+################################################################################
+# (1) Defining paths for main_path, r_scripts_path, ..., etc.
+r_scripts_path <- getwd()
+
+
+setwd("../../")
+main_repository_path <- getwd()
+setwd("../")
+github_path <- getwd()
+figures_path <- paste(main_repository_path,'/figures',sep="")
+figures_folder_name <- '/figure11'
+
+
 
 
 ################################################################################
@@ -30,9 +49,6 @@ start.time <- Sys.time()
 
 
 library(deSolve) # call deSolve first to avoid (Error in .C("unlock_solver") : )
-library(devtools)
-load_all('~/mxochicale/github/nonlinearTseries')
-
 library(data.table) # for manipulating data
 library(plot3D)
 library("RColorBrewer")
@@ -40,10 +56,10 @@ library(ggplot2)
 library(reshape2)#for melt
 
 
+library(devtools)
+load_all( paste(github_path,'/nonlinearTseries',sep='') )
 
-################################################################################
-# (1) Defining paths for main_path, r_scripts_path, ..., etc.
-r_scripts_path <- getwd()
+
 
 
 
@@ -81,7 +97,7 @@ state <- c(X=1, Y=1, Z=1)
 times <- seq(0,5, by=0.01)
 
 
-
+N <- length(times)-1
 
 
 #perform the integration and assign it to variable 'out'
@@ -97,12 +113,24 @@ setcolorder(lorenzdt, c(5,6,1:4))
 
 
 
-
-
 ################################################################################
 # (3) Plotting State Spaces
 
-png(filename="A.png",
+
+plot_path <- paste(figures_path,figures_folder_name,sep="")
+if (file.exists(plot_path)){
+    setwd(file.path(plot_path))
+} else {
+  dir.create(plot_path, recursive=TRUE)
+  setwd(file.path(plot_path))
+}
+
+
+
+filenametag <- paste('xlorenz-',N, '.png',sep='')
+
+
+png(filename=  paste('ss-',filenametag,sep='')  ,
   bg = "transparent",
   type="cairo",
   width = 800, height = 800, units = "px",
@@ -110,7 +138,6 @@ png(filename="A.png",
   res=75
   )
 	# type = c("cairo", "cairo-png", "Xlib", "quartz"), antialias)
-	#
 
 scatter3D(
   lorenzdt$X, lorenzdt$Y, lorenzdt$Z,
@@ -136,40 +163,31 @@ rqa.analysis=rqa(time.series = lorenz.ts, embedding.dim=2, time.lag=1,
 
 
 
-
 #################################################################################
 ## (5) Plotting Recurrence Plot
 ##
 
+## Calling `functions_extra_nonlinearTseries` 
+source( paste(github_path,'/tavand/functions/functions_extra_nonlinearTseries.R',sep='') )
+
+
 rm <- as.matrix(rqa.analysis$recurrence.matrix)
+maxsamplerp <- dim(rm)[1]
+
 RM <- as.data.table( melt(rm, varnames=c('a','b'),value.name='Recurrence') )
-r <- ggplot(RM)+
-	geom_raster( aes(x=a,y=b,fill=Recurrence) ) +  
-	scale_fill_manual( values = c("#ffffff", "#000000") ) +
-	labs(x="Sample", y="Sample") +
-  	theme_bw(base_size=15) + 
-	theme(legend.position="none")
 
 
-### Save Picture
+filename_extension <-  paste('rp-',filenametag,sep='')  
 width = 1000
 height = 1000
-text.factor = 1
-dpi <- text.factor * 100
-width.calc <- width / dpi
-height.calc <- height / dpi
-
-ggsave(filename = "rp.png",
-             dpi = dpi,
-             width = width.calc,
-             height = height.calc,
-             units = 'in',
-             bg = "transparent",
-             device = "png"
-             , r)
 
 
+rplot <- plotRecurrencePlot(RM,maxsamplerp)
+savePlot(filename_extension,width,height,rplot)
 
+
+#rplot2 <-  plotOnlyRecurrencePlot(RM,maxsamplerp)
+#savePlot('rp2.png',width,height,rplot2)
 
 
 
@@ -177,9 +195,6 @@ ggsave(filename = "rp.png",
 # Stop the clock!
 end.time <- Sys.time()
 end.time - start.time
-
-
-
 
 
 ################################################################################
