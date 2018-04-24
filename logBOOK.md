@@ -10,14 +10,28 @@ Log BOOK
 ## TODO
 
 
-* [ ] replication of figure 1.2
+* [ ] add description about the graphical results with respect to 
+	the changes of the parameters of rqa():
+	`rqa.analysis=rqa(time.series = ts, embedding.dim=1, time.lag=1,
+       	radius=1.5, lmin=2, vmin=2, do.plot=FALSE, distanceToBorder=2)`
+		(added:24april2018.21h12m;sorted:24april2018.??)
+
+
+
+* [x] replication of figure 1.2
 	(added:19april2018.14h36m;sorted:???)
 
-	* [ ] create time series for:
+	* [x] create time series for:
 		* a. uniformly distributed noise
 		* b. periodic ( super-positioned harmonic oscillations  )
 		* c. drift (logistic map xi+1 = 4xi(1-xi)
 		* d. disruped (brownian motion)
+
+	* [ ] polish previous plots and scripts and add description
+		 (use same paremeters and others that create consistence in the results) 
+		(added:24april2018.20h53m;sorted:24april2018.??)
+
+
 
 
 

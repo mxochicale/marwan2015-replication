@@ -1,6 +1,6 @@
 ###############################################################################	
 #
-# Recurrence plot fo the x solution of the lorenz system
+# Recurrence plot for disrupted (Brownian motion)
 # 
 #
 #
@@ -39,7 +39,7 @@ main_repository_path <- getwd()
 setwd("../")
 github_path <- getwd()
 figures_path <- paste(main_repository_path,'/figures',sep="")
-figures_folder_name <- '/figure11'
+figures_folder_name <- '/figure12'
 
 
 
@@ -48,7 +48,6 @@ figures_folder_name <- '/figure11'
 # (0) Loading Functions and Libraries
 
 
-library(deSolve) # call deSolve first to avoid (Error in .C("unlock_solver") : )
 library(data.table) # for manipulating data
 library(plot3D)
 library("RColorBrewer")
@@ -65,58 +64,29 @@ load_all( paste(github_path,'/nonlinearTseries',sep='') )
 
 
 ################################################################################
-# (2) Lorez Time Series
-Lorenz <- function(t, state, parameters){
-	  with(as.list( c(state,parameters)),
-	      {
-	      #rate of change
-	      dX <- sigma*(Y-X)
-	      dY <- rho*X - X*Z - Y
-	      dZ <- X*Y - beta*Z
-
-	      # return the rate of change
-	      list( c(dX, dY, dZ) )
-	      }
-	  )# end with(as.list...
-}
-
-#define controlling parameters
-# rho     - Scaled Rayleigh number.
-# sigma   - Prandtl number.
-# beta   - Geometry ascpet ratio.
-parameters <- c(rho=28, sigma= 10, beta=8/3)
-
-#define initial state
-state <- c(X=1, Y=1, Z=1)
-# state <- c(X=20, Y=41, Z=20)
-
-
-# define integrations times
-# times <- seq(0,100, by=0.001)
-#times <- seq(0,100, by=0.01)
-times <- seq(0,20, by=0.01)
-
-
-N <- length(times)-1
-
-
-#perform the integration and assign it to variable 'out'
-out <- ode(y=state, times= times, func=Lorenz, parms=parameters)
-
-
-lorenzdt <- as.data.table(out)
-
-fsNNtmp <-function(x) {list("Lorenz")}
-lorenzdt[,c("type"):=fsNNtmp(), ]
-lorenzdt[,sample:=seq(.N)]
-setcolorder(lorenzdt, c(5,6,1:4))
+# (1) Time Series
 
 
 
-################################################################################
-# (3) Plotting State Spaces
+N = 1000
+dis = rnorm(N, 0, 1)
+dis = cumsum(dis)
+# REF https://www.stat.berkeley.edu/~aldous/Research/Ugrad/ZY1.pdf
 
 
+
+#################################################################################
+## (2) Computing Recurrence Quantification Parameters
+##
+ts <- dis
+rqa.analysis=rqa(time.series = ts, embedding.dim=1, time.lag=1,
+                radius=1.5, lmin=2, vmin=2, do.plot=FALSE, distanceToBorder=2)
+
+
+
+#################################################################################
+## (3) Plotting Recurrence Plot
+##
 plot_path <- paste(figures_path,figures_folder_name,sep="")
 if (file.exists(plot_path)){
     setwd(file.path(plot_path))
@@ -125,49 +95,6 @@ if (file.exists(plot_path)){
   setwd(file.path(plot_path))
 }
 
-
-
-filenametag <- paste('xlorenz-',N, '.png',sep='')
-
-
-png(filename=  paste('ss-',filenametag,sep='')  ,
-  bg = "transparent",
-  type="cairo",
-  width = 800, height = 800, units = "px",
-  pointsize=20,
-  res=75
-  )
-	# type = c("cairo", "cairo-png", "Xlib", "quartz"), antialias)
-
-scatter3D(
-  lorenzdt$X, lorenzdt$Y, lorenzdt$Z,
-  colvar = lorenzdt$sample, bty = "u", type = "l", lwd=4,
-	axis.scales = TRUE,
-  main = "",
-  xlab = 'x(n)', ylab ='y(n)', zlab = 'z(n)',
-  colkey = list(length = 0.3, width = 0.8, cex.clab = 0.75)
-  )
-
-
-dev.off()
-
-
-
-#################################################################################
-## (4) Computing Recurrence Quantification Parameters
-##
-#' @param radius Maximum distance between two phase-space points to be
-#' considered a recurrence.
-#
-lorenz.ts <- lorenzdt$X
-rqa.analysis=rqa(time.series = lorenz.ts, embedding.dim=2, time.lag=1,
-                radius=5,lmin=2,vmin=2,do.plot=FALSE,distanceToBorder=2)
-
-
-
-#################################################################################
-## (5) Plotting Recurrence Plot
-##
 
 ## Calling `functions_extra_nonlinearTseries` 
 source( paste(github_path,'/tavand/functions/functions_extra_nonlinearTseries.R',sep='') )
@@ -179,6 +106,7 @@ maxsamplerp <- dim(rm)[1]
 RM <- as.data.table( melt(rm, varnames=c('a','b'),value.name='Recurrence') )
 
 
+filenametag <- paste('D-',N, '.png',sep='')
 filename_extension <-  paste('rp-',filenametag,sep='')  
 width = 1000
 height = 1000
