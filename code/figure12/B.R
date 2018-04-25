@@ -124,7 +124,7 @@ s1 <- cbind(type="s1",s1) # Addind type column
 #
 ts <- s1$xtn
 rqa.analysis=rqa(time.series = ts, embedding.dim=1, time.lag=1,
-                radius=0.2,lmin=2,vmin=2,do.plot=FALSE, distanceToBorder=2)
+                radius=0.4,lmin=2,vmin=2,do.plot=FALSE, distanceToBorder=2)
 
 
 #################################################################################
@@ -151,18 +151,17 @@ maxsamplerp <- dim(rm)[1]
 RM <- as.data.table( melt(rm, varnames=c('a','b'),value.name='Recurrence') )
 
 
-filenametag <- paste('B-xnoise-',N, '.png',sep='')
+filenametag <- paste('B-',N, '.png',sep='')
 filename_extension <-  paste('rp-',filenametag,sep='')  
 width = 1000
 height = 1000
 
 
-rplot <- plotRecurrencePlot(RM,maxsamplerp)
-savePlot(filename_extension,width,height,rplot)
+#rplot <- plotRecurrencePlot(RM,maxsamplerp)
+#savePlot(filename_extension, width, height, rplot)
 
-
-#rplot2 <-  plotOnlyRecurrencePlot(RM,maxsamplerp)
-#savePlot('rp2.png',width,height,rplot2)
+rplot2 <-  plotOnlyRecurrencePlot(RM,maxsamplerp)
+savePlot(filename_extension, width, height, rplot2)
 
 
 

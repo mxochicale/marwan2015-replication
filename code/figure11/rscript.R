@@ -94,7 +94,7 @@ state <- c(X=1, Y=1, Z=1)
 # define integrations times
 # times <- seq(0,100, by=0.001)
 #times <- seq(0,100, by=0.01)
-times <- seq(0,20, by=0.01)
+times <- seq(0,50, by=0.01)
 
 
 N <- length(times)-1
@@ -160,7 +160,7 @@ dev.off()
 #' considered a recurrence.
 #
 lorenz.ts <- lorenzdt$X
-rqa.analysis=rqa(time.series = lorenz.ts, embedding.dim=2, time.lag=1,
+rqa.analysis=rqa(time.series = lorenz.ts, embedding.dim=1, time.lag=1,
                 radius=5,lmin=2,vmin=2,do.plot=FALSE,distanceToBorder=2)
 
 

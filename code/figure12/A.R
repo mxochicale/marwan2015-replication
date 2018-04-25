@@ -149,18 +149,18 @@ maxsamplerp <- dim(rm)[1]
 RM <- as.data.table( melt(rm, varnames=c('a','b'),value.name='Recurrence') )
 
 
-filenametag <- paste('A-xnoise-',N, '.png',sep='')
+filenametag <- paste('A-',N, '.png',sep='')
 filename_extension <-  paste('rp-',filenametag,sep='')  
 width = 1000
 height = 1000
 
 
-rplot <- plotRecurrencePlot(RM,maxsamplerp)
-savePlot(filename_extension,width,height,rplot)
+#rplot <- plotRecurrencePlot(RM,maxsamplerp)
+#savePlot(filename_extension,width,height,rplot)
 
+rplot2 <-  plotOnlyRecurrencePlot(RM,maxsamplerp)
+savePlot(filename_extension,width,height,rplot2)
 
-#rplot2 <-  plotOnlyRecurrencePlot(RM,maxsamplerp)
-#savePlot('rp2.png',width,height,rplot2)
 
 
 

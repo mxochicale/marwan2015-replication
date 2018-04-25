@@ -112,12 +112,12 @@ width = 1000
 height = 1000
 
 
-rplot <- plotRecurrencePlot(RM,maxsamplerp)
-savePlot(filename_extension,width,height,rplot)
+#rplot <- plotRecurrencePlot(RM,maxsamplerp)
+#savePlot(filename_extension, width, height, rplot)
 
 
-#rplot2 <-  plotOnlyRecurrencePlot(RM,maxsamplerp)
-#savePlot('rp2.png',width,height,rplot2)
+rplot2 <-  plotOnlyRecurrencePlot(RM, maxsamplerp)
+savePlot(filename_extension, width, height, rplot2)
 
 
 
