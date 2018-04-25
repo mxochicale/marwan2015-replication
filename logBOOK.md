@@ -15,16 +15,16 @@ Log BOOK
 	(added:24april2018.12h04m,sorted:???)
 
 * [ ] add description about the graphical results with respect to 
-	the changes of the parameters of rqa():
+	the changes of the parameters of rqa() in the article:
 	`rqa.analysis=rqa(time.series = ts, embedding.dim=1, time.lag=1,
        	radius=1.5, lmin=2, vmin=2, do.plot=FALSE, distanceToBorder=2)`
-		(added:24april2018.21h12m;sorted:24april2018.??)
-
-
+		(added:24april2018.21h12m;sorted:???)
 
 
 
 ## SORTED
+* [x] start the draft article with figures
+	(added:24april2018)
 
 
 * [x] replication of figure 1.2

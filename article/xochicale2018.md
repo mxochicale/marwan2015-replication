@@ -7,7 +7,7 @@ Address:
   - code:    1
     address: School of Engineering, University of Birmingham, UK
 Contact:
-  - @gmail.com
+  - map479@bham.ac.uk
 Editor:
   - Name Surname
 Reviewer:
@@ -27,7 +27,8 @@ Repository:
   data:      
   notebook:  
 Reproduction:
-  - "*Mathematical and Computational Foundations of Recurrence Quantifications*, Marwan Norbert and Webber Charles L, Recurrence Quantification Analysis: Theory and Best Practices, 2015."
+- "*Mathematical and Computational Foundations of Recurrence Quantifications*,  
+	Marwan Norbert and Webber Charles L, Recurrence Quantification Analysis: Theory and Best Practices, 2015."
 Bibliography:
   bibliography.bib
 
@@ -35,12 +36,24 @@ Bibliography:
 
 # Introduction
 
-The introduction should introduce the original paper and put it in context
-(e.g. is it an important paper in the domain ?). You must also specify if there
+* The introduction should introduce the original paper and put it in context
+(e.g. is it an important paper in the domain ?). 
+
+The work of @marwan2015 on Recurrence Quantification is a good start to
+understand how recurrence plots work. However, while replicating 
+Figure 1.1 @fig:11 and Figure 1.2 @fig:12 in chapter one of @marwan2015.
+
+
+* You must also specify if there
 was an implementation available somewhere and provide a link to it if relevant
 (and in such a case, you have to specify if the proposed replication is based
-on this original implementation). You should also introduce your implementation
+on this original implementation).
+
+* You should also introduce your implementation
 by listing language, tools, libraries, etc. and motivate choices if relevant.
+
+
+
 
 # Methods
 
@@ -63,6 +76,12 @@ you think they are the same or why they may differ (qualitative result vs
 quantitative result). Note that it is not necessary to redo all the original
 analysis of the results.
 
+![Figure 1,1 ](../figures/figure11/figure11-v00.png){#fig:11}
+
+![Figure 1,2 ](../figures/figure12/figure12-v00.png){#fig:12}
+
+
+
 
 # Conclusion
 
@@ -81,11 +100,9 @@ cell1 row3 cell2 row 3 cell3 row 3 cell4 row 3 cell5 row 3 cell6 row 3
 Table: Table caption {#tbl:table}
 
 A reference to table @tbl:table.
-A reference to figure @fig:logo.
 A reference to equation @eq:1.
 A reference to citation @markdown.
 
-![Figure caption](rescience-logo.pdf){#fig:logo}
 
 $$ A = \sqrt{\frac{B}{C}} $$ {#eq:1}
 
