@@ -5,22 +5,16 @@ code
 
 # Dependencies
 
-To install the following dependecies, run `install-R-packages.R`
+run `install-R-packages.R` to install the following dependecies:
+
 * devtools
 * deSolve
+* reshape2
 * data.table
 * plot3D
 * RColorBrewer
 * ggplot2
-
-* tseriesChaos
-* git clone `https://github.com/mxochicale/tavand`
-* git clone `https://github.com/mxochicale/nonlinearTseries`
-
-
-
-
-
+* nonlinearTseries`
 
 
 

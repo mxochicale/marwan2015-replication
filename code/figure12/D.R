@@ -53,26 +53,35 @@ library(plot3D)
 library("RColorBrewer")
 library(ggplot2)
 library(reshape2)#for melt
-
-
-library(devtools)
-load_all( paste(github_path,'/nonlinearTseries',sep='') )
-
+library(nonlinearTseries)
 
 
 
 
 
 ################################################################################
-# (1) Time Series
+# (1) Disrupted brownian motion
+## `emailing-authors/exrps.m` LINE 55-59:
+##x=0; 
+##for i=1:2000; 
+##   x(i+1)=x(i)+(2*rand-1);
+##end
+##X=crp(x,1,1,.2,'sil');
 
+N <- 400
+M <- 2000
+x<- 0
+for (i in (1:M) ){
+	#x[i+1] <- x[i] + ( (2*rnorm(1))-1  )
+	#x[i+1] <- x[i] +  ( 2*rnorm(1)-1   )
+	x[i+1] <- x[i] +  ( 2*rnorm(1)  )
+}
+dis <- x[1:N]
 
-
-N = 1000
-dis = rnorm(N, 0, 1)
-dis = cumsum(dis)
-# REF https://www.stat.berkeley.edu/~aldous/Research/Ugrad/ZY1.pdf
-
+#N = 2000
+#dis = rnorm(N, 0, 1)
+#dis = cumsum(dis)
+### REF https://www.stat.berkeley.edu/~aldous/Research/Ugrad/ZY1.pdf
 
 
 #################################################################################
@@ -80,14 +89,15 @@ dis = cumsum(dis)
 ##
 ts <- dis
 rqa.analysis=rqa(time.series = ts, embedding.dim=1, time.lag=1,
-                radius=1.5, lmin=2, vmin=2, do.plot=FALSE, distanceToBorder=2)
+                radius=5, lmin=2, vmin=2, do.plot=FALSE, distanceToBorder=2)
 
 
 
 #################################################################################
 ## (3) Plotting Recurrence Plot
 ##
-plot_path <- paste(figures_path,figures_folder_name,sep="")
+imagesversion <- 'v01'
+plot_path <- paste(figures_path, figures_folder_name, '/', imagesversion,sep="")
 if (file.exists(plot_path)){
     setwd(file.path(plot_path))
 } else {
@@ -97,7 +107,7 @@ if (file.exists(plot_path)){
 
 
 ## Calling `functions_extra_nonlinearTseries` 
-source( paste(github_path,'/tavand/functions/functions_extra_nonlinearTseries.R',sep='') )
+source( paste(main_repository_path,'/code/functions/functions_extra_nonlinearTseries.R',sep='') )
 
 
 rm <- as.matrix(rqa.analysis$recurrence.matrix)
@@ -105,8 +115,7 @@ maxsamplerp <- dim(rm)[1]
 
 RM <- as.data.table( melt(rm, varnames=c('a','b'),value.name='Recurrence') )
 
-
-filenametag <- paste('D-',N, '.png',sep='')
+filenametag <- paste('D-',N, '-', imagesversion,'.png',sep='')
 filename_extension <-  paste('rp-',filenametag,sep='')  
 width = 1000
 height = 1000

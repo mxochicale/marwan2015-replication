@@ -1,5 +1,54 @@
 
 
+
+# (003) replied (date:30april2018.??h??m) to # (002) NOrbert REPLIED EMAIL: date 26 April 2018 at 22:48
+Dear NOrbert and Chuck,
+
+I do appreciate your replies and your code which have helped me 
+to have better understanding of the RPs and replicate most of your graphical results
+* replicated figure11-v01: 
+* replicated figure12-v01: 
+
+However, with regard to the disrupted brownian motion, 
+I understand that the RP should be equal to your results due the  use of rand() function
+but I am expecting, at least, to have a similar using the same function and paremeters
+for which so I did a slight change with the disputed parameter changing it from 
+`2*rand-1` to `2*rand` and the epsilon parameter from 0.2 to 5 in the R version.
+
+
+Additionally to that, I hope you have the time to reply the following questions:
+
+* (1) What is your motivation to choose different time series legnths (e.g. 400 and 150) to create the RP?
+* (2) I guess that every time series has its own features which might be the reason to choose
+different threshold parameters (e.g. epsilon=0.2 and epsilon=0.4), however I am failing 
+to understand the main reason for that. Would you explain more about your motivations?
+
+* (3)Is there any fundamental reason to choose those particular time series inputs with those parameters:
+(3.1) periodic(super-positioned harmonic oscillations): `sin(.2*[1:N]').*sin(.05*[1:N]')`
+(3.2) logistic map corrupted with a linear increasing term:  `logistic.map.time.series  +  0.01*(1:(1+M)) with x=.617 
+(3.3) distupted brownian motion:  `x(i+1)=x(i)+(2 ** rand-1)`
+
+* (4) Are aware of any validation or standarisation test or publication for the creation of Recurrence Plots.
+My silly assumption is that using either your matlab function `crp()` or the R package: `https://github.com/constantino-garcia/nonlinearTseries` 
+must lead us to get the same results, however, you might your algorithm implementation might be a 
+slightly different from the implemantation of Constantino-Garcia et al.
+ 
+
+NOTE: It will take me some time but I want to let you know that I want submit 
+this little exercise of replicating your graphical results to ReScience*
+
+* ReScience is a peer-reviewed journal that targets computational research and 
+encourages the explicit replication of already published research, 
+promoting new and open-source implementations in order to ensure that 
+the original research is reproducible. https://rescience.github.io/
+
+Thanks again for your time and help
+Miguel
+
+
+
+
+
 # (002) NOrbert REPLIED EMAIL: date 26 April 2018 at 22:48
 
 ```

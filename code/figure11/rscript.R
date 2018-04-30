@@ -54,18 +54,24 @@ library(plot3D)
 library("RColorBrewer")
 library(ggplot2)
 library(reshape2)#for melt
-
-
-library(devtools)
-load_all( paste(github_path,'/nonlinearTseries',sep='') )
-
-
-
+library(nonlinearTseries)
 
 
 
 ################################################################################
 # (2) Lorez Time Series
+## `emailing-authors/lorenz.m` LINE 6-12:
+#r = 28;
+#b = 8/3;
+#s = 10;
+#dy(1) = -s * (y(1) - y(2));
+#dy(2) = -y(1)*y(3) + r*y(1) -y(2);
+#dy(3) = y(1)*y(2) - b*y(3);
+#
+## `emailing-authors/exrps.m` LINE 4-5:
+## [t, x] = ode45('lorenz',[1 50], [1.6186 1.8792 17.617]);
+## X=crp2([x(1:1500,1),x(1:1500,2),x(1:1500,3)],1,1,5,'euc','non','sil');
+
 Lorenz <- function(t, state, parameters){
 	  with(as.list( c(state,parameters)),
 	      {
@@ -87,15 +93,14 @@ Lorenz <- function(t, state, parameters){
 parameters <- c(rho=28, sigma= 10, beta=8/3)
 
 #define initial state
-state <- c(X=1, Y=1, Z=1)
-# state <- c(X=20, Y=41, Z=20)
+state <- c(X=1.6186, Y=1.8792, Z=17.617)
 
 
 # define integrations times
 # times <- seq(0,100, by=0.001)
 #times <- seq(0,100, by=0.01)
+#times <- seq(0,5, by=0.01)
 times <- seq(0,50, by=0.01)
-
 
 N <- length(times)-1
 
@@ -116,8 +121,8 @@ setcolorder(lorenzdt, c(5,6,1:4))
 ################################################################################
 # (3) Plotting State Spaces
 
-
-plot_path <- paste(figures_path,figures_folder_name,sep="")
+imagesversion <- 'v01'
+plot_path <- paste(figures_path, figures_folder_name, '/', imagesversion,sep="")
 if (file.exists(plot_path)){
     setwd(file.path(plot_path))
 } else {
@@ -126,10 +131,7 @@ if (file.exists(plot_path)){
 }
 
 
-
-filenametag <- paste('xlorenz-',N, '.png',sep='')
-
-
+filenametag <- paste('lorenz-',N, '-', imagesversion,'.png',sep='')
 png(filename=  paste('ss-',filenametag,sep='')  ,
   bg = "transparent",
   type="cairo",
@@ -159,7 +161,8 @@ dev.off()
 #' @param radius Maximum distance between two phase-space points to be
 #' considered a recurrence.
 #
-lorenz.ts <- lorenzdt$X
+#lorenz.ts <- lorenzdt$X
+lorenz.ts <- c(lorenzdt$X,lorenzdt$Y,lorenzdt$Z)
 rqa.analysis=rqa(time.series = lorenz.ts, embedding.dim=1, time.lag=1,
                 radius=5,lmin=2,vmin=2,do.plot=FALSE,distanceToBorder=2)
 
@@ -170,7 +173,7 @@ rqa.analysis=rqa(time.series = lorenz.ts, embedding.dim=1, time.lag=1,
 ##
 
 ## Calling `functions_extra_nonlinearTseries` 
-source( paste(github_path,'/tavand/functions/functions_extra_nonlinearTseries.R',sep='') )
+source( paste(main_repository_path,'/code/functions/functions_extra_nonlinearTseries.R',sep='') )
 
 
 rm <- as.matrix(rqa.analysis$recurrence.matrix)

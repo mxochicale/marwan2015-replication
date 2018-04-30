@@ -1,6 +1,7 @@
 ###############################################################################	
 #
-# Recurrence plot for drift (logistic map xi+1 = 4xi(1-xi) )
+# Recurrence plot for drift (logistic map xi+1 = 4xi(1-xi) ) 
+# corrupted with a linearly increasing term ( 0.01*(1:150) )
 # 
 #
 #
@@ -42,31 +43,31 @@ figures_path <- paste(main_repository_path,'/figures',sep="")
 figures_folder_name <- '/figure12'
 
 
-
-
 ################################################################################
 # (0) Loading Functions and Libraries
-
 
 library(data.table) # for manipulating data
 library(plot3D)
 library("RColorBrewer")
 library(ggplot2)
 library(reshape2)#for melt
-
-
-library(devtools)
-load_all( paste(github_path,'/nonlinearTseries',sep='') )
-
-
-
+library(nonlinearTseries)
 
 
 
 ################################################################################
-# (1) Homogeneous (uniformly distributed noise)
+# (1) Logistic Map
+## `emailing-authors/exrps.m` LINE 46-49:
+##x=.617; 
+##for i=2:500; 
+##   x(i)=4*x(i-1)*(1-x(i-1)); 
+##end
+##X=crp(x(201:200+150)+.01*[1:150],1,1,.2,'sil');
 
-#REF: https://www.r-bloggers.com/logistic-map-feigenbaum-diagram/
+#N=150
+#epsilon 0.2 sigma
+
+
 logistic.map <- function(r, x, N, M){
   ## r: bifurcation parameter
   ## x: initial value
@@ -80,12 +81,14 @@ logistic.map <- function(r, x, N, M){
   ## Return the last M iterations 
   z[c((N-M):N)]
 }
+#REF: https://www.r-bloggers.com/logistic-map-feigenbaum-diagram/
 
-
-N <- 1000
-M <- N
-lm <- logistic.map(r=4, x=0.001, N=1000, M)
-
+r <- 4
+x <- 0.617
+N <- 350
+M <- 150
+lm <- logistic.map(r, x, N, M)
+lm <- lm  +  0.01*(1:(1+M))
 
 
 #################################################################################
@@ -101,8 +104,9 @@ rqa.analysis=rqa(time.series = ts, embedding.dim=1, time.lag=1,
 
 #################################################################################
 ## (3) Plotting Recurrence Plot
-##
-plot_path <- paste(figures_path,figures_folder_name,sep="")
+# #
+imagesversion <- 'v01'
+plot_path <- paste(figures_path, figures_folder_name, '/', imagesversion,sep="")
 if (file.exists(plot_path)){
     setwd(file.path(plot_path))
 } else {
@@ -113,13 +117,13 @@ if (file.exists(plot_path)){
 
 
 ## Calling `functions_extra_nonlinearTseries` 
-source( paste(github_path,'/tavand/functions/functions_extra_nonlinearTseries.R',sep='') )
+source( paste(main_repository_path,'/code/functions/functions_extra_nonlinearTseries.R',sep='') )
 
 rm <- as.matrix(rqa.analysis$recurrence.matrix)
 maxsamplerp <- dim(rm)[1]
 RM <- as.data.table( melt(rm, varnames=c('a','b'),value.name='Recurrence') )
 
-filenametag <- paste('C-',N, '.png',sep='')
+filenametag <- paste('C-',M, '-', imagesversion,'.png',sep='')
 filename_extension <-  paste('rp-',filenametag,sep='')  
 width = 1000
 height = 1000

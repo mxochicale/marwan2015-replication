@@ -9,10 +9,12 @@ Log BOOK
 
 ## TODO
 
+* [ ] email authors after replicating their code
+	(added:30april.10h40m, sorted:???.???)
 
-* [ ] contact the authors to ask about the equations to create the 
-	time series for the RP in figures 1.1 and 1.2
-	(added:24april2018.12h04m,sorted:???)
+* [ ] update figure11 with the similar parameters 
+	(added:30april2018.10h40m, sorted:???.???)
+
 
 * [ ] add description about the graphical results with respect to 
 	the changes of the parameters of rqa() in the article:
@@ -23,6 +25,25 @@ Log BOOK
 
 
 ## SORTED
+
+* [x] replicate `exrps.m` equations to create RP with the use of `A,B,C,D . R`
+	(added:27april2018.22h45m, sorted:31april2018.10h32m)
+
+
+* [x] update the dependencies section to avoid the user get extra packages
+	* [x] update `install-R-packages.R` with the right packages (sorted:28april2018.13h26m)
+	* [x] move the function `/tavand/functions/functions_extra_nonlinearTseries.R` to the code path (29april2018.18h30m)
+	* [x] use the main package of `nonlinearTseries` and comment left this repo for testing
+	`load_all( paste(github_path,'/nonlinearTseries',sep='') )` (29april2017.19h00m)
+	(added:27april2018.22h22m, sorted:29april2017.20h00)
+
+
+* [x] contact the authors to ask about the equations to create the 
+	time series for the RP in figures 1.1 and 1.2: `~/marwan2015-replication/emailing-authors` 
+	(added:24april2018.12h04m,sorted:26april2018.22h48m)
+
+
+
 * [x] start the draft article with figures
 	(added:24april2018)
 
