@@ -1,43 +1,53 @@
 
 
 
-# (003) replied (date:30april2018.??h??m) to # (002) NOrbert REPLIED EMAIL: date 26 April 2018 at 22:48
+# (003) replied (date:30april2018.16h54m) to # (002) NOrbert REPLIED EMAIL: date 26 April 2018 at 22:48
 ```
+from:	Miguel P. Xochicale <perez.xochicale@gmail.com>
+to:	Norbert Marwan <marwan@pik-potsdam.de>
+cc:	"Charles Webber Jr." <cwebber@luc.edu>
+date:	30 April 2018 at 16:54
+subject:	Re: Replicating of RP of the first chapter of Recurrence Quantification Analysis (2015).
+mailed-by:	gmail.com
+
+
 
 Dear NOrbert and Chuck,
 
 I do appreciate your replies and your code which have helped me 
-to have better understanding of the RPs throught a closely replication of your graphical results
+to have better understanding of the RPs through a closely replication of your graphical results
 
 * replicated figure11-v01: https://raw.githubusercontent.com/mxochicale/marwan2015-replication/master/figures/figure11/v01/figure11-v01.png
 * replicated figure12-v01: https://raw.githubusercontent.com/mxochicale/marwan2015-replication/master/figures/figure12/v01/figure12-v01.png
 
 However, I understand that the RP should not be equal to your results due because of the use 
-of rand() function, initial conditions and the ode45() function to solve the differential equations,
-but I am expecting, at least, to have a similar using the same function and paremeters.
-For instance, for Figure 1.1, the sample rate for time is not given, so I define 
-`times = seq(1,50, by=0.01) which has a lenght of 5001 samples and then windowed the data for each variable with only 1500 samples.
-For Figure 1.2 D, I did a slight change with the disputed parameter changing it from 
+of rand() function, initial conditions in the functions and ode45()inMATLAB and ode()inR functions to solve the differential equations,
+but I am expecting, at least, to have a similar results using the same function and parameters.
+For instance, for Figure 1.1, the sample rate for time variable to generate the lorenz solutions is not given, 
+so I defined `times = seq(1,50, by=0.01) which has a length of 5001 samples and 
+then windowed the data for each variable with only 1500 samples.
+For Figure 1.2 D, I did a slightly change with the disputed parameter changing it from 
 `2*rand-1` to `2*rand` and the epsilon parameter from 0.2 to 5 in the R version.
 
-Additionally to that, I hope you have the time to reply the following questions:
+More questions:
 
-* (1) What is your motivation to choose different time series legnths (e.g. 4500, 400 and 150) to create the RP?
+* (1) What is your motivation to choose different time series lengths (e.g. 4500, 400 and 150) to create the RP?
 * (2) I guess that every time series has its own features which might be the reason to choose
 different threshold parameters as well (e.g. epsilon=0.2 and epsilon=0.4), but I am failing 
-to understand what is the main reason for that. Would you please give more details?
+to understand what is the main reason for that. Would you please give further details?
 
-* (3)Is there any fundamental reason to choose those particular time series inputs with those parameters:
+* (3) Is there any fundamental reason to choose the following  time series parameters:
 (3.1) periodic(super-positioned harmonic oscillations): `sin(.2*[1:N]').*sin(.05*[1:N]')`
 (3.2) logistic map corrupted with a linear increasing term:  `logistic.map.time.series  +  0.01*(1:(1+M)) with x=.617 
-(3.3) distupted brownian motion:  `x(i+1)=x(i)+(2 ** rand-1)`
+(3.3) distupted brownian motion:  `x(i+1)=x(i)+(2*rand-1)`
 
 * (4) Are aware of any validation or standarisation test or publication for the creation of Recurrence Plots.
-My silly assumption is that using either your matlab function `crp()` or the R package: `https://github.com/constantino-garcia/nonlinearTseries` 
-must lead us to get the same results, however, you might your algorithm implementation might be a 
-slightly different from the implemantation of Constantino-Garcia et al.
+My silly assumption is that both functions crp()inMATLAB and rqa()inR 
+must produce the same results, however, your algorithm implementation might 
+be a  slightly different from the implementation of Constantino-Garcia et al. 
 
-* (5) Do you have the following paper and the code for the graphical plots as open access?
+
+* (5) Can you share the following paper and the code to replicate your graphical results?
 ```
 N. Marwan, M. C. Romano, M. Thiel, J. Kurths, 
 Recurrence Plots for the Analysis of Complex Systems, 
@@ -46,8 +56,7 @@ Physics Reports, 438(5-6), 237-329, DOI:10.1016/j.physrep.2006.11.001, 2007
 
 
 NOTE:
-
-It will take me some time but I want to let you know that
+It will take me some indefinite time but I want to let you know that
 this exercise of understanding your work by replicating your graphical results 
 will be submitted to ReScience*
 
