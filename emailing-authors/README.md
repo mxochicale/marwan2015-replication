@@ -2,26 +2,30 @@
 
 
 # (003) replied (date:30april2018.??h??m) to # (002) NOrbert REPLIED EMAIL: date 26 April 2018 at 22:48
+```
+
 Dear NOrbert and Chuck,
 
 I do appreciate your replies and your code which have helped me 
-to have better understanding of the RPs and replicate most of your graphical results
-* replicated figure11-v01: 
-* replicated figure12-v01: 
+to have better understanding of the RPs throught a closely replication of your graphical results
 
-However, with regard to the disrupted brownian motion, 
-I understand that the RP should be equal to your results due the  use of rand() function
-but I am expecting, at least, to have a similar using the same function and paremeters
-for which so I did a slight change with the disputed parameter changing it from 
+* replicated figure11-v01: https://raw.githubusercontent.com/mxochicale/marwan2015-replication/master/figures/figure11/v01/figure11-v01.png
+* replicated figure12-v01: https://raw.githubusercontent.com/mxochicale/marwan2015-replication/master/figures/figure12/v01/figure12-v01.png
+
+However, I understand that the RP should not be equal to your results due because of the use 
+of rand() function, initial conditions and the ode45() function to solve the differential equations,
+but I am expecting, at least, to have a similar using the same function and paremeters.
+For instance, for Figure 1.1, the sample rate for time is not given, so I define 
+`times = seq(1,50, by=0.01) which has a lenght of 5001 samples and then windowed the data for each variable with only 1500 samples.
+For Figure 1.2 D, I did a slight change with the disputed parameter changing it from 
 `2*rand-1` to `2*rand` and the epsilon parameter from 0.2 to 5 in the R version.
-
 
 Additionally to that, I hope you have the time to reply the following questions:
 
-* (1) What is your motivation to choose different time series legnths (e.g. 400 and 150) to create the RP?
+* (1) What is your motivation to choose different time series legnths (e.g. 4500, 400 and 150) to create the RP?
 * (2) I guess that every time series has its own features which might be the reason to choose
-different threshold parameters (e.g. epsilon=0.2 and epsilon=0.4), however I am failing 
-to understand the main reason for that. Would you explain more about your motivations?
+different threshold parameters as well (e.g. epsilon=0.2 and epsilon=0.4), but I am failing 
+to understand what is the main reason for that. Would you please give more details?
 
 * (3)Is there any fundamental reason to choose those particular time series inputs with those parameters:
 (3.1) periodic(super-positioned harmonic oscillations): `sin(.2*[1:N]').*sin(.05*[1:N]')`
@@ -32,10 +36,20 @@ to understand the main reason for that. Would you explain more about your motiva
 My silly assumption is that using either your matlab function `crp()` or the R package: `https://github.com/constantino-garcia/nonlinearTseries` 
 must lead us to get the same results, however, you might your algorithm implementation might be a 
 slightly different from the implemantation of Constantino-Garcia et al.
- 
 
-NOTE: It will take me some time but I want to let you know that I want submit 
-this little exercise of replicating your graphical results to ReScience*
+* (5) Do you have the following paper and the code for the graphical plots as open access?
+```
+N. Marwan, M. C. Romano, M. Thiel, J. Kurths, 
+Recurrence Plots for the Analysis of Complex Systems, 
+Physics Reports, 438(5-6), 237-329, DOI:10.1016/j.physrep.2006.11.001, 2007
+```
+
+
+NOTE:
+
+It will take me some time but I want to let you know that
+this exercise of understanding your work by replicating your graphical results 
+will be submitted to ReScience*
 
 * ReScience is a peer-reviewed journal that targets computational research and 
 encourages the explicit replication of already published research, 
@@ -44,6 +58,8 @@ the original research is reproducible. https://rescience.github.io/
 
 Thanks again for your time and help
 Miguel
+```
+
 
 
 

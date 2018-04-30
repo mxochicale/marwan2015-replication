@@ -100,7 +100,8 @@ state <- c(X=1.6186, Y=1.8792, Z=17.617)
 # times <- seq(0,100, by=0.001)
 #times <- seq(0,100, by=0.01)
 #times <- seq(0,5, by=0.01)
-times <- seq(0,50, by=0.01)
+#times <- seq(0,50, by=0.1)#501 samples
+times <- seq(1,50, by=0.01)#5001 samples
 
 N <- length(times)-1
 
@@ -117,6 +118,12 @@ lorenzdt[,sample:=seq(.N)]
 setcolorder(lorenzdt, c(5,6,1:4))
 
 
+#window data to 1500 samples
+maxN <- 1500
+windowframe = (N-maxN):N;
+lorenzdt <- lorenzdt[,.SD[windowframe]]
+
+
 
 ################################################################################
 # (3) Plotting State Spaces
@@ -131,7 +138,7 @@ if (file.exists(plot_path)){
 }
 
 
-filenametag <- paste('lorenz-',N, '-', imagesversion,'.png',sep='')
+filenametag <- paste('lorenz-',(maxN*3), '-', imagesversion,'.png',sep='')
 png(filename=  paste('ss-',filenametag,sep='')  ,
   bg = "transparent",
   type="cairo",
@@ -149,7 +156,6 @@ scatter3D(
   xlab = 'x(n)', ylab ='y(n)', zlab = 'z(n)',
   colkey = list(length = 0.3, width = 0.8, cex.clab = 0.75)
   )
-
 
 dev.off()
 
@@ -182,6 +188,7 @@ maxsamplerp <- dim(rm)[1]
 RM <- as.data.table( melt(rm, varnames=c('a','b'),value.name='Recurrence') )
 
 
+filenametag <- paste('lorenz-',(maxsamplerp), '-', imagesversion,'.png',sep='')
 filename_extension <-  paste('rp-',filenametag,sep='')  
 width = 1000
 height = 1000

@@ -12,9 +12,6 @@ Log BOOK
 * [ ] email authors after replicating their code
 	(added:30april.10h40m, sorted:???.???)
 
-* [ ] update figure11 with the similar parameters 
-	(added:30april2018.10h40m, sorted:???.???)
-
 
 * [ ] add description about the graphical results with respect to 
 	the changes of the parameters of rqa() in the article:
@@ -25,6 +22,12 @@ Log BOOK
 
 
 ## SORTED
+
+
+
+* [x] update figure11 with the similar parameters 
+	(added:30april2018.10h40m, sorted:30april2018.16h33m)
+
 
 * [x] replicate `exrps.m` equations to create RP with the use of `A,B,C,D . R`
 	(added:27april2018.22h45m, sorted:31april2018.10h32m)
