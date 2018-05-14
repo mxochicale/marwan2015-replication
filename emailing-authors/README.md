@@ -1,5 +1,62 @@
 
 
+# (005)
+
+
+```
+from:	Webber Jr, Charles <Cwebber@luc.edu>
+to:	"Miguel P. Xochicale" <perez.xochicale@gmail.com>
+cc:	"marwan@pik-potsdam.de" <marwan@pik-potsdam.de>
+date:	12 May 2018 at 15:51
+
+
+Hi Miguel - Below I answer your three questions to me. - Best, Chuck 05/12/18
+
+Q1 - Window Size: I speak from my experience of selecting window size, 
+not from any one publication that has explored this in detail.
+
+Q2 - RQA Dangerous tool: This comment comes not just from common sense in the nonlinear world, 
+but from a specific investigator 20 years ago who insisted he saw patterns in data using 
+an embedding dimension of 300.  Because of the "curse of dimensionality" with noisy data, 
+we limit the embedding to 20.  
+AT 300, random signals give very nice recurrence plots signifying nothing!
+
+Q3 - Norbet's paper: Yes, in this case I am referring to 
+"How to avoid potential pitfalls in recurrence plot based data analysis" 
+published in International Journal of Bifurcation and Chaos, 21(4), 2011.
+```
+
+
+
+# (004) 
+
+
+```
+from:	Miguel P. Xochicale <perez.xochicale@gmail.com>
+to:	"Webber Jr, Charles" <Cwebber@luc.edu>
+date:	9 May 2018 at 21:10
+subject:	Re: Replicating of RP of the first chapter of Recurrence Quantification Analysis (2015).
+mailed-by:	gmail.com
+
+Chuck,
+
+> I set the sliding window size to capture sufficient transition dyanamics (short windows) 
+and avoid over-averaging (blurring or desensitizing) of the recurrence variables (long windows).
+
+any paper with further evidence of those experiences?
+
+> In this sense, RQA is a dangerous tool if one is not familiar with the pitfalls 
+of implementation and interpretations.  In fact, Norbert has a nice paper on this very topic.
+
+I like dangerous tools :), which is that Norbert's paper that you are referring to?
+
+PD. Thanks for your reply Norbert, I will be patient!
+
+```
+
+
+
+
 
 # (003) replied (date:30april2018.16h54m) to # (002) NOrbert REPLIED EMAIL: date 26 April 2018 at 22:48
 ```
