@@ -5,7 +5,7 @@ https://scholar.google.com/scholar?um=1&ie=UTF-8&lr&cites=12078080326951835608
 FILE: 
 https://scholar.google.com/scholar?cluster=12078080326951835608&hl=en&as_sdt=0,5&sciodt=0,5
 
-
+```
 @article{PhysRevLett.96.254102,
   title = {Estimating the Shannon Entropy: Recurrence Plots versus Symbolic Dynamics},
   author = {Letellier, Christophe},
@@ -20,7 +20,7 @@ https://scholar.google.com/scholar?cluster=12078080326951835608&hl=en&as_sdt=0,5
   doi = {10.1103/PhysRevLett.96.254102},
   url = {https://link.aps.org/doi/10.1103/PhysRevLett.96.254102}
 }
-
+```
 
 
 
