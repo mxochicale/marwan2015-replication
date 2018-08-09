@@ -1,25 +1,30 @@
-# (007) - draft
+
+
+# (007) 
 
 
 ```
+from:	Miguel P. Xochicale <perez.xochicale@gmail.com>
+to:	Norbert Marwan <marwan@pik-potsdam.de>
+cc:	"Charles Webber Jr." <cwebber@luc.edu>
+date:	9 August 2018 at 15:07
+
 Dear Norbert 
 
-I do appreciate your time and reply and thanks for the interest
-in spending some time with your expertise to reproduce, at least,
-one of your papers. Actually, you made a fair about my selection
-of [marwan2015] "Mathematical and Computational Foundations of Recurrence Quantifications"
-as my target to reproduce, well the reason for that is essentially 
-my little understanding and knowledge in the area. I though that replicating
-[marwane2014] might be a good starting point for me to understand 
-better the topic of RPQ.
+I do appreciate your time to reply my email ragarding my 
+interest in replicating  (marwan 2015) "Mathematical and Computational Foundations of Recurrence Quantifications".
+You have made a fair about my careless selection for reproducibility. I just though that replicating
+[marwane2015] might be a good starting point for me to understand better the topic of RQA.
 
-Norbert, I will rethink the selection of your work 
-for deeper scientific investigation by taking into account your recommendations.
+Well, I like your recomendations (Lettellier 2006) whom I met at Experimental Chaos conference in Spain in June 2018 :).
+The good think about your recomendation is that Lettelier make his code and data available for that paper
+at http://www.atomosyd.net/spip.php?article74.
 
-I will send you another email in the future about my selection 
+I am wondering if you have any other recommendations from your work with code and data
+in order to compare Shannon Entropy values of the RQA.
 
-Thanks again for your time and help.
-
+Regards,
+Miguel
 ```
 
 
